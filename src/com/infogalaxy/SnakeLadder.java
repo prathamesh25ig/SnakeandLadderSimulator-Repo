@@ -16,29 +16,36 @@ public class SnakeLadder {
         System.out.println("Player Position is " + position);
     }
     public void Diceroll() {
-        //UC-2 Rolling Dice to Get Number between 1-6:
+        //UC-4 Repeating till Plaer reaches 100 position:
+        while (position<=100 ){
+            Random random = new Random();
+            //UC-2 Rolling Dice to Get Number between 1-6:
+            int diceNo = (int) ((Math.random() * (7 - 1)) + 1);
+            System.out.println("Dice Number:" + diceNo);
 
-        Random random = new Random();
-        int diceNo = (int) ((Math.random() * (6 - 1)) + 1);
-        System.out.println("Dice Number:" + diceNo);
-        //UC-3 Checking PLayer's option to PLay:
-        int play = random.nextInt() % 3;
-        //Player's Option to Playe Game:
-        System.out.println(play);
-        switch (play)
-        {
-            case Constants.NO_PLAY:
-                position = position + diceNo;
-                System.out.println("Stay on Same Position!");
-                break;
-            case Constants.LADDER:
-                System.out.println("LADDER!!");
-                position = position + diceNo;
-                break;
-            case Constants.SNAKE:
-                System.out.println("SNAKE!!!");
-                position = position - diceNo;
-                break;
+            int play = (int)((Math.random() * (4-1)) + 1);
+            //Player's Option to Playe Game:
+            System.out.println(play);
+            //UC-3 Checking PLayer's option to PLay:
+            switch (play) {
+                case Constants.NO_PLAY:
+                    position = position + diceNo;
+                    System.out.println("Stay on Same Position!");
+                    break;
+                case Constants.LADDER:
+                    System.out.println("LADDER!!");
+                    position = position + diceNo;
+                    break;
+                case Constants.SNAKE:
+                    System.out.println("SNAKE!!!");
+                    position = position - diceNo;
+                    // Ensuring player's position not get below 0:
+                    if(position<0){
+                        position = 0;
+                    }
+                    break;
+            }
+            showPosition();
         }
     }
 
