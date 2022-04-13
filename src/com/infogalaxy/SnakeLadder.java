@@ -16,8 +16,8 @@ public class SnakeLadder {
         System.out.println("Player Position is " + position);
     }
     public void Diceroll() {
-        //UC-4 Repeating till Plaer reaches 100 position:
-        while (position<=100 ){
+        //UC-5 Ensuring Player get Exact Winning position 100 :
+        while (position != 100 ) {
             Random random = new Random();
             //UC-2 Rolling Dice to Get Number between 1-6:
             int diceNo = (int) ((Math.random() * (7 - 1)) + 1);
@@ -35,6 +35,12 @@ public class SnakeLadder {
                 case Constants.LADDER:
                     System.out.println("LADDER!!");
                     position = position + diceNo;
+                    // In case Player go Above 100:
+                    if (position>100) {
+                        System.out.println("Player is Out of Board!!");
+                        // PLayer Stays in Same Previous Position
+                        position = position - diceNo;
+                    }
                     break;
                 case Constants.SNAKE:
                     System.out.println("SNAKE!!!");
